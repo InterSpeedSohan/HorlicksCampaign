@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Routes</string>
+
+    <string name="take_image_done">Image Captured</string>
+
+    <string name="version">1.0</string>
+    <string name="credit">©Interspeed Data Science Lab</string>
+</resources>
