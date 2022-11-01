@@ -18,7 +18,7 @@ import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.horlickscampaign.databinding.ActivityFormBinding
+import com.example.horlickscampaign.databinding.ActivityStudentFormBinding
 import com.example.horlickscampaign.login.loginResponse.School
 import com.example.horlickscampaign.login.loginResponse.SessionData
 import com.example.horlickscampaign.utils.CustomUtility
@@ -30,9 +30,9 @@ import org.json.JSONObject
 import java.util.*
 import java.util.prefs.Preferences
 
-class FormActivity : AppCompatActivity() {
+class StudentFormActivity : AppCompatActivity() {
     var doubleBackToExitPressedOnce = false
-    lateinit var binding: ActivityFormBinding
+    lateinit var binding: ActivityStudentFormBinding
     lateinit var sharedPreferences: SharedPreferences
     var school:School? = null
     var sessionData: SessionData? = null
@@ -54,7 +54,7 @@ class FormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFormBinding.inflate(layoutInflater)
+        binding = ActivityStudentFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         sharedPreferences = getSharedPreferences("user",Context.MODE_PRIVATE)
@@ -69,7 +69,9 @@ class FormActivity : AppCompatActivity() {
 
             binding.selectSchoolBtn.setOnClickListener{
                 sharedPreferences.edit().remove("savedSchool").apply()
-                startActivity(Intent(applicationContext, SchoolListActivity::class.java))
+                val intent = Intent(applicationContext, SchoolListActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
                 finish()
             }
 
@@ -88,7 +90,7 @@ class FormActivity : AppCompatActivity() {
 
             binding.sexRadioGroup.setOnCheckedChangeListener { radioGroup: RadioGroup, i: Int ->
                 when (i) {
-                    binding.mail.id -> {
+                    binding.male.id -> {
                         studentSex = "Male"
                     }
                     binding.female.id -> {
@@ -363,11 +365,14 @@ class FormActivity : AppCompatActivity() {
                     .show()
                 return false
             }
+            /*
             else if (!isCorrectPrimaryNumber) {
                 Toast.makeText(this, "Please insert guardian's phone number!", Toast.LENGTH_SHORT)
                     .show()
                 return false
             }
+
+             */
             return true
         } else {
             Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show()

@@ -58,12 +58,14 @@ class SchoolListActivity : AppCompatActivity() {
         recyclerView!!.adapter = mAdapter
 
         getSchoolList()
-
+/*
         if(sharedPreferences!!.contains("savedSchool"))
         {
-            startActivity(Intent(applicationContext, FormActivity::class.java))
+            startActivity(Intent(applicationContext, StudentFormActivity::class.java))
             finish()
         }
+
+ */
 
     }
     private fun getSchoolList() {
@@ -117,8 +119,8 @@ class SchoolListActivity : AppCompatActivity() {
                 val editor = sharedPreferences.edit()
                 editor.putString("savedSchool",Gson().toJson(data))
                 editor.apply()
-                startActivity(Intent(applicationContext, FormActivity::class.java))
-                finish()
+                startActivity(Intent(applicationContext, SelectionActivity::class.java))
+                //finish()
             }
         }
 
