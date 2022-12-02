@@ -10,6 +10,8 @@ import android.provider.Settings
 import android.util.Base64
 import androidx.appcompat.app.AlertDialog
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.example.horlickscampaign.attendance.attendanceresponse.AttendanceStatusResponseBody
+import retrofit2.Callback
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -57,7 +59,7 @@ object CustomUtility {
             .show()
     }
 
-    fun showError(context: Context?, mess: String?, tittle: String?) {
+    fun showError(context: Context, mess: String?, tittle: String?) {
         SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
             .setTitleText(tittle)
             .setContentText(mess)

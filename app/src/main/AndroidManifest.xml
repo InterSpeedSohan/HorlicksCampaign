@@ -27,6 +27,20 @@
         tools:replace="android:icon"
         android:theme="@style/Theme.RoutesHungryNaki">
         <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.RoutesHungryNaki.NoActionBar"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name=".attendance.AttendanceActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.RoutesHungryNaki.NoActionBar"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
             android:name=".SchoolListActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.RoutesHungryNaki.NoActionBar"
@@ -42,6 +56,13 @@
         </activity>
         <activity
             android:name=".GuardianFormActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.RoutesHungryNaki.NoActionBar"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name=".WeightSamplingActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.RoutesHungryNaki.NoActionBar"
             android:screenOrientation="portrait"

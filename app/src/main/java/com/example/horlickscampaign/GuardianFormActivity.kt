@@ -55,7 +55,7 @@ class GuardianFormActivity : AppCompatActivity() {
     var relation: String = ""
     var relationList = arrayOf("Father","Mother","Other")
     var relationOther: String = ""
-
+    var hasBought = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGuardianFormBinding.inflate(layoutInflater)
@@ -199,6 +199,10 @@ class GuardianFormActivity : AppCompatActivity() {
 
             }
 
+            binding.hasPurchasedCheckbox.setOnCheckedChangeListener { compoundButton, b ->
+                hasBought = b
+            }
+
             binding.submitBtn.setOnClickListener{
                 if(checkFields())
                 {
@@ -291,6 +295,14 @@ class GuardianFormActivity : AppCompatActivity() {
                 params["Relation"] = relation
                 params["RelationOther"] = binding.relationOther.text.toString()
                 params["Mobile"] = guardianNumber
+                if(hasBought)
+                {
+                    params["HasPurchasedBox"] = "1"
+                }
+                else {
+                    params["HasPurchasedBox"] = "0"
+                }
+
 
                 params["LatValue"] = presentLat!!
                 params["LonValue"] = presentLon!!

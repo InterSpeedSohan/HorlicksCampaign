@@ -34,7 +34,7 @@ class SelectionActivity: AppCompatActivity() {
         binding.team.text = sessionData!!.team_name
 
         binding.studentInfoBtn.setOnClickListener {
-            startActivity(Intent(applicationContext, StudentFormActivity::class.java))
+            startActivity(Intent(applicationContext, WeightSamplingActivity::class.java))
         }
 
         binding.guardianInfoBtn.setOnClickListener {

@@ -12,7 +12,6 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
@@ -28,7 +27,6 @@ import com.google.gson.Gson
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
-import java.util.prefs.Preferences
 
 class StudentFormActivity : AppCompatActivity() {
     var doubleBackToExitPressedOnce = false
@@ -218,8 +216,9 @@ class StudentFormActivity : AppCompatActivity() {
         val sr: StringRequest = object : StringRequest(Method.POST, url,
             Response.Listener {
                 sweetAlertDialog.dismiss()
+                Log.d("response:", it)
                 try {
-                    Log.d("response:", it)
+
                     val jsonObject = JSONObject(it)
                     if (jsonObject.getBoolean("success")) {
                         CustomUtility.showSuccess(

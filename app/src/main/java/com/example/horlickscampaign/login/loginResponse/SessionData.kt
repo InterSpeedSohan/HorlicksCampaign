@@ -9,5 +9,6 @@ data class SessionData(
     val user_id: String,
     val user_name: String,
     val user_type_id: String,
-    val user_type_name: String
+    val user_type_name: String,
+    val employee_id: String,
 )

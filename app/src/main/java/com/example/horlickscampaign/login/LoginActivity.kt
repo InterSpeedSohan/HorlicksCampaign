@@ -13,6 +13,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.example.horlickscampaign.MainActivity
 import com.example.horlickscampaign.SchoolListActivity
 import com.example.horlickscampaign.databinding.ActivityLoginBinding
 import com.example.horlickscampaign.login.loginResponse.LoginResponseBody
@@ -67,7 +68,7 @@ open class LoginActivity : AppCompatActivity() {
                 } finally {
                     sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
                     if (sharedPreferences!!.contains("loginInfo")) {
-                        val intent = Intent(applicationContext, SchoolListActivity::class.java)
+                        val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
@@ -160,12 +161,20 @@ open class LoginActivity : AppCompatActivity() {
                         val userData = loginResponseBody.sessionData
                         if(loginResponseBody.success)
                         {
-                            sharedPreferences = getSharedPreferences("user", MODE_PRIVATE)
-                            val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
-                            editor.putString("loginInfo",Gson().toJson(userData))
-                            editor.apply()
-                            startActivity(Intent(applicationContext, SchoolListActivity::class.java))
-                            finish()
+                            if(userData.user_id != null && userData.employee_id != null)
+                            {
+                                sharedPreferences = getSharedPreferences("user", MODE_PRIVATE)
+                                val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
+                                editor.putString("loginInfo",Gson().toJson(userData))
+                                editor.apply()
+                                startActivity(Intent(applicationContext, MainActivity::class.java))
+                                finish()
+                            }
+                            else
+                            {
+                                CustomUtility.showError(this@LoginActivity,"Employee not positioned","Failed")
+                            }
+
                         }
                         else
                         {
